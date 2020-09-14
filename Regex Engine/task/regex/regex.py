@@ -24,6 +24,8 @@ def length_match(expr, text):
         return True
     if text == '':
         return False
+    if len(expr) > 1 and expr[0] == chr(92) and expr[1] in '\\^$*?+.':
+        expr = expr[1:]
     if len(expr) > 1 and expr[1] in '*?+':
         if expr[1] in '?*' and length_match(expr[2:], text):
             return True
